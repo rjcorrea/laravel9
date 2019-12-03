@@ -55,7 +55,8 @@ class TodoController extends Controller
      */
     public function update(TodoRequest $request, $id)
     {
-        return $this->todoService->update($request, $id);
+        $this->todoService->update($request, $id);
+        return response()->json(['status' => 'Success'], 200);
     }
 
     /**
@@ -66,7 +67,7 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        $this->todoService->destroy($id);
+        $this->todoService->delete($id);
         return response()->json(['status' => 'Success'], 200);
     }
 }
