@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Repositories\Contracts\TodoRepositoryInterface;
-use App\Todo;
 
 class TodoService
 {
