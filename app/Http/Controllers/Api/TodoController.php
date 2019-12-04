@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TodoRequest;
 use App\Services\TodoService;
+use App\Http\Resources\TodoResource;
 
 class TodoController extends Controller
 {
@@ -14,6 +15,7 @@ class TodoController extends Controller
     {
         $this->todoService = $service;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +23,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        return $this->todoService->all();
+        $todos = $this->todoService->all();
+        return TodoResource::collection($todos);
     }
 
     /**
@@ -43,7 +46,8 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        return $this->todoService->show($id);
+        $todo = $this->todoService->show($id);
+        return new TodoResource($todo);
     }
 
     /**
